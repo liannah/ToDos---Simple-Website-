@@ -7,7 +7,7 @@ let messagebox = $('#msgtxtbx');
 const show = function (items) {
     ulist.html('');
     items.forEach(function (n) {
-        $(ulist).append($('<li class="todostyle">' + n.message + '</li><input type="checkbox" class="checkbox" id='+n.id+'/><button  class="delete" type="button" id='+n.id+'>Delete!</button>'));
+        $(ulist).append($('<li class="todostyle">' + n.message + '</li><input type="checkbox" class="checkbox" id='+n.id+' ${n.completed ? checked: ""}/><button  class="delete" type="button" id='+n.id+'>Delete!</button>'));
     });
 };
 
