@@ -7,9 +7,16 @@ let messagebox = $('#msgtxtbx');
 const show = function (items) {
     ulist.html('');
     items.forEach(function (n) {
-        $(ulist).append($('<li class="todostyle">' + n.message + '</li><input type="checkbox" class="checkbox" id='+n.id+' ${n.completed ? checked: ""}/><button  class="delete" type="button" id='+n.id+'>Delete!</button>'));
+        let checked = "";
+        if (n.completed) {
+            checked = "checked";
+        }
+        $(ulist).append($('<li class="todostyle">' + n.message + '</li><input type="checkbox" class="checkbox" id="' + n.id + '" ' + checked + '/><button  class="delete" type="button" id=' + n.id + '>Delete!</button>'));
     });
 };
+
+
+
 
 const update = function () {
     $.ajax({
@@ -26,26 +33,6 @@ const update = function () {
     });
 };
 
-
-const data1 =  function () {
-    const searchtext = searchbox.val();
-    $.ajax({
-        url: "/todos",
-        type: 'get',
-        dataType: 'json',
-        data: {
-            searchtext: searchtext
-        },
-        success: function (data) {
-            show(data.items);
-        },
-        error: function (data) {
-            alert('Error searching');
-        }
-
-    });
-    $('searchtxtbx').val('');
-};
 
 $('#searchbutton').on('click', function () {
     const searchtext = searchbox.val();
@@ -108,7 +95,7 @@ ulist.on('click', '.delete', function (e) {
 
 ulist.on('change', '.checkbox', function (e) {
     const todoItemID = e.target.id;
-    const todoItem = {       
+    const todoItem = {
         completed: e.target.checked,
         id: todoItemID,
     }
