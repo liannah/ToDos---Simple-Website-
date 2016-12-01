@@ -1,8 +1,8 @@
 ﻿body {
     color: black;
-    background-color: navajowhite;
+    background-image: url("https://media.tenor.co/images/3ccff8c4b2443d93811eac9b2fd56f11/raw");
     font-size : 20px;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .input[type=text] {
@@ -10,7 +10,3 @@
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
-
-
-
-

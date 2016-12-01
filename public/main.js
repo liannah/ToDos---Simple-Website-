@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 let ulist = $('#ulist')
 let searchbox = $('#searchtxtbx');
@@ -6,7 +6,7 @@ let messagebox = $('#msgtxtbx');
 
 const show = function (items) {
     ulist.html('');
-    items.forEach(function (n) {
+    items.forEach(function (n) {  //goes through every object into items array chooses according to the request..
         let checked = "";
         if (n.completed) {
             checked = "checked";

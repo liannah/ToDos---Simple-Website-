@@ -1,4 +1,3 @@
-
 'use strict';
 
 const fs = require('fs');
@@ -27,19 +26,19 @@ let todos = [
 
 const httpserver = http.createServer(function (req, res) {
 
-    const parsedUrl = url.parse(req.url);
-    const parsedQuery = querystring.parse(parsedUrl.query);
+    const parsedUrl = url.parse(req.url);   //with the use of parse get object 
+    const parsedQuery = querystring.parse(parsedUrl.query); //query after ? the text
     const method = req.method;
     if (method === 'GET') {
-        if (req.url.indexOf('/todos') === 0) {
+        if (req.url.indexOf('/todos') === 0) {  //if the req.url is /todos
             res.setHeader('Content-Type', 'application/json');
             let localTodos = todos;
-            if (parsedQuery.searchtext) {
+            if (parsedQuery.searchtext) { //searchtext client information into searchext
                 localTodos = localTodos.filter(function (obj) {
-                    return obj.message.indexOf(parsedQuery.searchtext) >= 0;
+                    return obj.message.indexOf(parsedQuery.searchtext) >= 0; //local todos contains filterdata return modifies array 
                 });
             }
-            return res.end(JSON.stringify({ items: localTodos }));
+            return res.end(JSON.stringify({ items: localTodos })); //localtodos is emtpy is going to return  the whole localtodos
         }
         else {
             fs.readFile('./public' + req.url, function (err, data) {
@@ -49,7 +48,7 @@ const httpserver = http.createServer(function (req, res) {
                 }
 
                 res.statusCode = 200;
-                return res.end(data);
+                res.end(data);
             });
         }
     }
